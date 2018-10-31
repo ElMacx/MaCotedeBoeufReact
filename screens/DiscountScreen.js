@@ -1,12 +1,14 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { ScrollView, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Links',
-  };
-
+export default class DiscountScreen extends React.Component {
+  static navigationOptions =({navigation})=> ({
+      headerRight:(
+          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            <Text>Add</Text>
+          </TouchableOpacity>
+      )
+  });
   render() {
     return (
       <ScrollView style={styles.container}>

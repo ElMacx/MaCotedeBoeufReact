@@ -11,11 +11,11 @@ class ProductScreen extends React.Component {
   }
 
   _redirectToList() {
-    console.log('Go to list')
+    this.props.navigation.goBack()
   }
 
   _redirectToCart() {
-    console.log('Go to cart')
+    this.props.navigation.push('Cart')
   }
 
   _addToCart(product) {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart
+    cart: state.addToCart.cart
   }
 }
 

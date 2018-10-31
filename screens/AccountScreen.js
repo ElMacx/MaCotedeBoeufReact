@@ -1,11 +1,16 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
+import * as firebase from 'firebase';
 
-export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Mon compte',
-  };
+
+export default class AccountScreen extends React.Component {
+  static navigationOptions =({navigation})=> ({
+      headerRight:(
+          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            <Text>Add</Text>
+          </TouchableOpacity>
+      )
+  });
 
   constructor(props) {
     super(props)
@@ -14,6 +19,17 @@ export default class LinksScreen extends React.Component {
       lastname: '',
       adress: ''
     }
+  }
+
+  _doDisconnect() {
+    Alert.alert('Action', 'Voulez-vous vous déconnecter ?', [{ text: 'Oui', onPress: () => {
+        firebase.auth().signOut().then(() => {
+            this.props.navigation.navigate('LoginStackNavigator')
+        }, (error) => {
+          Alert.alert('Erreur lors de la déconnexion')
+        });
+      }
+    }, { text: 'Non', onPress: () => {} }])
   }
 
   render() {
@@ -33,6 +49,7 @@ export default class LinksScreen extends React.Component {
               placeholder='Adresse'
               style={styles.input_st}
               onChangeText={(text) => this.setState({ adress: text })}/>
+          <Button title='Se déconnecter' onPress={() => this._doDisconnect()}/>
         </View>
       </ScrollView>
     );

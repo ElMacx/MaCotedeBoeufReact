@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Button, Text } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -8,17 +8,24 @@ import DiscountScreen from '../screens/DiscountScreen';
 import OrdersScreen from '../screens/OrdersScreen';
 import AccountScreen from '../screens/AccountScreen';
 import ProductScreen from '../screens/ProductScreen';
+import CartScreen from '../screens/CartScreen';
 
 const ProductStack = createStackNavigator({
   Products: {
     screen: ProductsScreen,
     navigationOptions: {
-      title: 'Produits'
+      title: 'Produits',
     }
   },
   Product: {
     screen: ProductScreen
   },
+  Cart: {
+    screen: CartScreen,
+    navigationOptions: {
+      title: 'Votre panier',
+    }
+  }
 });
 
 ProductStack.navigationOptions = {
@@ -36,7 +43,18 @@ ProductStack.navigationOptions = {
 };
 
 const DiscountStack = createStackNavigator({
-  Discount: DiscountScreen,
+  Discount: {
+    screen: DiscountScreen,
+    navigationOptions: {
+      title: "Les promotions"
+    }
+  },
+  Cart: {
+    screen: CartScreen,
+    navigationOptions: {
+      title: 'Votre panier',
+    }
+  }
 });
 
 DiscountStack.navigationOptions = {
@@ -50,7 +68,18 @@ DiscountStack.navigationOptions = {
 };
 
 const OrdersStack = createStackNavigator({
-  Orders: OrdersScreen,
+  Orders: {
+    screen: OrdersScreen,
+    navigationOptions: {
+      title: 'Mes commandes',
+    }
+  },
+  Cart: {
+    screen: CartScreen,
+    navigationOptions: {
+      title: 'Votre panier',
+    }
+  }
 });
 
 OrdersStack.navigationOptions = {
@@ -64,7 +93,18 @@ OrdersStack.navigationOptions = {
 };
 
 const AccountStack = createStackNavigator({
-  Account: AccountScreen,
+  Account: {
+    screen: AccountScreen,
+    navigationOptions: {
+      title: 'Votre compte'
+    }
+  },
+  Cart: {
+    screen: CartScreen,
+    navigationOptions: {
+      title: 'Votre panier',
+    }
+  }
 });
 
 AccountStack.navigationOptions = {

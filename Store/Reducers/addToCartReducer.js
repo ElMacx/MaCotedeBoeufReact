@@ -21,6 +21,11 @@ function addToCart(state = initialState, action) {
         ...state,
         cart: state.cart.filter(e => e.id !== action.value.id)
       }
+    case 'EMPTY_CART':
+      return {
+        ...state,
+        cart: [],
+      }
   default:
     return state
   }

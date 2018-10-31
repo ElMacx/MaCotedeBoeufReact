@@ -3,7 +3,10 @@ import {
   StyleSheet,
   View,
   FlatList,
-  Text
+  Text,
+  Button,
+  Alert,
+  TouchableOpacity,
 } from 'react-native';
 
 import ProductItem from '../components/ProductItem';
@@ -11,11 +14,15 @@ import { connect } from 'react-redux'
 
 
 class ProductsScreen extends React.Component {
+  static navigationOptions =({navigation})=> ({
+      headerRight:(
+          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            <Text>Add</Text>
+          </TouchableOpacity>
+      )
+  });
   constructor(props) {
     super(props)
-    this.state = {
-      products: []
-    }
   }
 
   _getProductsFromAPI() {
@@ -30,7 +37,6 @@ class ProductsScreen extends React.Component {
     .then((responseJson) => {
       const action = { type: "SET_PRODUCT_LIST", value: responseJson }
       this.props.dispatch(action)
-      this.setState({ products: responseJson })
     })
   }
 
@@ -38,16 +44,11 @@ class ProductsScreen extends React.Component {
     this._getProductsFromAPI()
   }
 
-  componentDidUpdate() {
-    console.log("componentDidUpdate : ")
-    console.log(this.props.productList)
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-            data={this.state.products}
+            data={this.props.productList}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => <ProductItem product={item} onPress={(product) => this.props.navigation.navigate("Product", { product: product }) }/>}
           />
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    productList: state.productList
+    productList: state.setProductList.productList
   }
 }
 
