@@ -25,6 +25,23 @@ class ProductScreen extends React.Component {
         [{ text: 'Ok', onPress: () => this._redirectToList() }, { text: 'Aller au panier', onPress: () => this._redirectToCart() }])
   }
 
+  _renderAddToCartItems() {
+    const fromOrder = this.props.navigation.state.params.fromOrder
+    if (!fromOrder) {
+      return (
+        <View>
+          <TextInput
+            placeholder='Quantité'
+            keyboardType='phone-pad'
+            onChangeText={(nb) => this.setState({ quantity: nb })}/>
+          <Button title="Commander" onPress={() => this._addToCart(product)}/>
+        </View>
+      )
+    } else {
+      return null
+    }
+  }
+
   render() {
     const product = this.props.navigation.state.params.product
     return (
@@ -32,11 +49,7 @@ class ProductScreen extends React.Component {
         <Text>{product.name}</Text>
         <Text>{product.description}</Text>
         <Text>{product.price}</Text>
-        <TextInput
-            placeholder='Quantité'
-            keyboardType='phone-pad'
-            onChangeText={(nb) => this.setState({ quantity: nb })}/>
-        <Button title="Commander" onPress={() => this._addToCart(product)}/>
+        { this._renderAddToCartItems() }
       </View>
     )
   }

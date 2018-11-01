@@ -13,7 +13,7 @@ import ProductItem from '../components/ProductItem';
 import { connect } from 'react-redux'
 
 
-class ProductsScreen extends React.Component {
+class OrderDetailScreen extends React.Component {
   static navigationOptions =({navigation})=> ({
       headerRight:(
           <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
@@ -25,32 +25,19 @@ class ProductsScreen extends React.Component {
     super(props)
   }
 
-  _getProductsFromAPI() {
-    return fetch(`https://macotedeboeuf.firebaseio.com/products.json`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      const action = { type: "SET_PRODUCT_LIST", value: responseJson }
-      this.props.dispatch(action)
-    })
-  }
-
-  componentDidMount() {
-    this._getProductsFromAPI()
+  _getProductById(id) {
+      return this.props.productList.find(e => e.id === id)
   }
 
   render() {
+    const orderDetailList = this.props.navigation.state.params.orderDetail
     return (
       <View style={styles.container}>
         <FlatList
-            data={this.props.productList}
+            data={orderDetailList.productList}
             keyExtractor={(item) => item.id}
-            renderItem={({item}) => <ProductItem product={item} onPress={(product) => this.props.navigation.navigate("Product", { product: product, fromOrder: false }) }/>}
+            renderItem={({item}) => <ProductItem product={this._getProductById(item.id)}
+            onPress={(product) => this.props.navigation.navigate("Product", { product: product, fromOrder: true }) }/>}
           />
       </View>
     );
@@ -70,4 +57,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(ProductsScreen)
+export default connect(mapStateToProps)(OrderDetailScreen)

@@ -9,6 +9,7 @@ import OrdersScreen from '../screens/OrdersScreen';
 import AccountScreen from '../screens/AccountScreen';
 import ProductScreen from '../screens/ProductScreen';
 import CartScreen from '../screens/CartScreen';
+import OrderDetailScreen from '../screens/OrderDetailScreen'
 
 const ProductStack = createStackNavigator({
   Products: {
@@ -79,7 +80,16 @@ const OrdersStack = createStackNavigator({
     navigationOptions: {
       title: 'Votre panier',
     }
-  }
+  },
+  OrderDetail: {
+    screen: OrderDetailScreen,
+    navigationOptions: {
+      title: 'Mon détail de commande'
+    }
+  },
+  Product: {
+    screen: ProductScreen
+  },
 });
 
 OrdersStack.navigationOptions = {

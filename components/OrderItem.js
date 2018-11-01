@@ -1,28 +1,25 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements'
+import stateTranscription from '../helper/orderStateTranscription'
 
-class ProductItemCart extends React.Component {
+class OrderItem extends React.Component {
   constructor(props) {
     super(props)
   }
 
   render() {
-    const product = this.props.product
-    const quantity = this.props.quantity
-    console.log('product', product)
+    const order = this.props.order
+    const index = this.props.index
     return (
-      <TouchableOpacity style={styles.main_container}>
-        <Image
-          style={styles.image}
-          source={{uri: "image"}}/>
+      <TouchableOpacity style={styles.main_container} onPress={() => this.props.onPress(order)}>
         <View style={styles.content_container}>
           <View style={styles.text_container}>
-            <Text style={styles.title_text}>{product.name}</Text>
-            <Text style={styles.price}>Prix : {product.price}€</Text>
+            <Text style={styles.title_text}>Commande n°{index + 1}</Text>
+            <Text style={styles.price}>{stateTranscription[order.state].label}</Text>
           </View>
-          <View style={styles.icon_container}>
-            <Text>{quantity}</Text>
+          <View style={styles.price_container}>
+            <Text>Prix total : {order.totalPrice}€</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -49,11 +46,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   text_container: {
-    flex: 4,
+    flex: 7,
     flexDirection: 'column'
   },
-  icon_container: {
-    flex: 2,
+  price_container: {
+    flex: 3,
     flexDirection: 'column'
   },
   title_text: {
@@ -69,4 +66,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ProductItemCart
+export default OrderItem
