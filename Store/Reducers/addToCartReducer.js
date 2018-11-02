@@ -19,7 +19,7 @@ function addToCart(state = initialState, action) {
     case 'REMOVE_CART':
       return {
         ...state,
-        cart: state.cart.filter(e => e.id !== action.value.id)
+        cart: state.cart.filter(e => e.id !== action.value)
       }
     case 'EMPTY_CART':
       return {

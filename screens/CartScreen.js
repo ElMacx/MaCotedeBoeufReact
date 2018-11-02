@@ -51,24 +51,31 @@ class CartScreen extends React.Component {
       [{ text: 'Valider', onPress: () => this._orderSucces() }, { text: 'Annuler', onPress: () => {} }])
   }
 
-  _renderOrderButton() {
-    if (this.props.cart.length > 0) {
-      return (<Button title="Commander" onPress={() => this._doOrder()}/>)
+  _renderFlatListIfNotEmpty() {
+    if (this.props.cart && this.props.cart.length > 0) {
+      return (
+        <View>
+          <FlatList data={this.props.cart}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({item}) => <ProductItemCart product={this._findProductById(item.id)}
+                                            quantity={item.quantity}
+                                            rowId={item.id}
+                                            onPress={(product) => this.props.navigation.navigate("Product", { product: product, fromOrder: true }) }
+                                            />
+                                }
+          />
+          <Button title="Commander" onPress={() => this._doOrder()}/>
+        </View>
+      )
     } else {
-      return null
+      return (<Text>Panier vide</Text>)
     }
   }
 
   render() {
-    const curCart = this.props.cart
     return (
       <View style={styles.container}>
-        <FlatList
-            data={this.props.cart}
-            keyExtractor={(item) => item.id}
-            renderItem={({item}) => <ProductItemCart product={this._findProductById(item.id)} quantity={item.quantity}/>}
-          />
-          { this._renderOrderButton() }
+        { this._renderFlatListIfNotEmpty() }
       </View>
     );
   }

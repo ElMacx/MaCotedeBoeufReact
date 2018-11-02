@@ -1,6 +1,7 @@
 import React from 'react';
-import { Platform, Button, Text } from 'react-native';
+import { Platform, Button, Text, TouchableOpacity } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { Icon } from 'react-native-elements'
 
 import TabBarIcon from '../components/TabBarIcon';
 import ProductsScreen from '../screens/ProductsScreen';
@@ -14,12 +15,28 @@ import OrderDetailScreen from '../screens/OrderDetailScreen'
 const ProductStack = createStackNavigator({
   Products: {
     screen: ProductsScreen,
-    navigationOptions: {
-      title: 'Produits',
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Produits',
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
     }
   },
   Product: {
-    screen: ProductScreen
+    screen: ProductScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
+    }
   },
   Cart: {
     screen: CartScreen,
@@ -46,8 +63,15 @@ ProductStack.navigationOptions = {
 const DiscountStack = createStackNavigator({
   Discount: {
     screen: DiscountScreen,
-    navigationOptions: {
-      title: "Les promotions"
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Les promotions',
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
     }
   },
   Cart: {
@@ -71,8 +95,15 @@ DiscountStack.navigationOptions = {
 const OrdersStack = createStackNavigator({
   Orders: {
     screen: OrdersScreen,
-    navigationOptions: {
-      title: 'Mes commandes',
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Mes commandes',
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
     }
   },
   Cart: {
@@ -83,12 +114,29 @@ const OrdersStack = createStackNavigator({
   },
   OrderDetail: {
     screen: OrderDetailScreen,
-    navigationOptions: {
-      title: 'Mon détail de commande'
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Mon détail de commande',
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
     }
   },
   Product: {
-    screen: ProductScreen
+    screen: ProductScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Les promotions',
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
+    }
   },
 });
 
@@ -105,8 +153,15 @@ OrdersStack.navigationOptions = {
 const AccountStack = createStackNavigator({
   Account: {
     screen: AccountScreen,
-    navigationOptions: {
-      title: 'Votre compte'
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Votre compte',
+        headerRight: (
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' name='ios-cart'/>
+            </TouchableOpacity>
+        )
+      }
     }
   },
   Cart: {

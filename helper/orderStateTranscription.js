@@ -1,17 +1,17 @@
 export default state = [{
     id: 0,
-    label: "Commande en cours de validation"
+    label: "En cours de validation"
   }, {
     id: 1,
-    label: "Commande en cours de préparation"
+    label: "En préparation"
   }, {
     id: 2,
-    label: "Commande à venir récupérée"
+    label: "A venir récupérée"
   }, {
     id: 3,
-    label: "Commande récupérée"
+    label: "Récupérée"
   }, {
     id: 4,
-    label: "Commande annulée"
+    label: "Annulée"
   }
 ]

@@ -18,7 +18,7 @@ class DiscountItem extends React.Component {
             <Text style={styles.daterange}>Date de fin : {discount.daterange}</Text>
           </View>
           <View style={styles.price_container}>
-            <Text>Prix total : {discount.price}€</Text>
+            <Text style={styles.total_price}>Prix total : {discount.price}€</Text>
           </View>
         </View>
       </View>
@@ -28,15 +28,26 @@ class DiscountItem extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    height: 50,
+    height: 55,
     flexDirection: 'row',
+    marginTop: 15,
     marginLeft: 15,
-    marginRight: 15
+    marginRight: 15,
+    marginBottom: 5,
+    backgroundColor: '#e74c3c',
+    borderRadius: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   content_container: {
     flex: 1,
     margin: 5,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
   text_container: {
     flex: 7,
@@ -51,12 +62,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     flex: 1,
     flexWrap: 'wrap',
-    paddingRight: 5
+    paddingRight: 5,
+    color: '#FFFFFF'
   },
   daterange: {
     fontStyle: 'italic',
-    color: '#666666'
+    color: '#666666',
+    color: '#FFFFFF'
   },
+  total_price: {
+    color: '#FFFFFF',
+    marginTop: 10,
+  }
 })
 
 export default DiscountItem

@@ -7,6 +7,7 @@ class ProductItem extends React.Component {
     super(props)
   }
 
+
   render() {
     const product = this.props.product
     return (
@@ -17,10 +18,10 @@ class ProductItem extends React.Component {
         <View style={styles.content_container}>
           <View style={styles.text_container}>
             <Text style={styles.title_text}>{product.name}</Text>
-            <Text style={styles.price} numberOfLines={6}>{product.price}</Text>
+            <Text style={styles.price}>Prix : {product.price}€/kg</Text>
           </View>
           <View style={styles.icon_container}>
-            <Icon type='ionicon' name='ios-arrow-forward'/>
+            <Icon color='#FFFFFF' type='ionicon' name='ios-arrow-forward'/>
           </View>
         </View>
       </TouchableOpacity>
@@ -30,16 +31,25 @@ class ProductItem extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    height: 50,
+    height: 60,
     flexDirection: 'row',
+    marginTop: 15,
     marginLeft: 15,
-    marginRight: 15
+    marginRight: 15,
+    backgroundColor: '#e74c3c',
+    borderRadius: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   image: {
-    width: 35,
-    height: 35,
-    margin: 5,
-    backgroundColor: 'gray',
+    width: 40,
+    height: 40,
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10,
+    backgroundColor: '#FFFFFF',
   },
   content_container: {
     flex: 1,
@@ -48,22 +58,27 @@ const styles = StyleSheet.create({
   },
   text_container: {
     flex: 5,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: 5
   },
   icon_container: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: 15
   },
   title_text: {
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 18,
     flex: 1,
     flexWrap: 'wrap',
-    paddingRight: 5
+    paddingRight: 5,
+    color: '#FFFFFF',
   },
   price: {
     fontStyle: 'italic',
-    color: '#666666'
+    fontSize: 12,
+    color: '#FFFFFF',
+    marginBottom: 5
   },
 })
 

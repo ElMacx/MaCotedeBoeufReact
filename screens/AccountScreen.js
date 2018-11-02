@@ -2,23 +2,28 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
 import * as firebase from 'firebase';
 
-
 export default class AccountScreen extends React.Component {
-  static navigationOptions =({navigation})=> ({
-      headerRight:(
-          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-      )
-  });
 
   constructor(props) {
     super(props)
     this.state = {
-      firstname: '',
-      lastname: '',
+      user: {},
       adress: ''
     }
+  }
+
+  componentDidMount() {
+    return fetch(`https://macotedeboeuf.firebaseio.com/users/${firebase.auth().currentUser.uid}.json`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        this.setState({ user: responseJson })
+    })
   }
 
   _doDisconnect() {
@@ -32,23 +37,30 @@ export default class AccountScreen extends React.Component {
     }, { text: 'Non', onPress: () => {} }])
   }
 
+  _updateUser() {
+    const userInfos = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
+    userInfos.update(this.state.user);
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.inputsContainer}>
-          <Text style={styles.title_text}>Nom</Text>
           <TextInput
             style={styles.input_st}
-            placeholder='Nom de famille' onChangeText={(text) => this.setState({ lastname: text })}/>
-          <Text style={styles.title_text}>Prénom</Text>
+            value={this.state.user.lastname}
+            placeholder='Nom de famille'
+            onChangeText={(text) => this.setState(prevState => ({ user: { ...prevState.user, lastname: text } }))}/>
           <TextInput
             style={styles.input_st}
-            placeholder='Prénom' onChangeText={(text) => this.setState({ firstname: text })}/>
-          <Text style={styles.title_text}>Adresse</Text>
+            value={this.state.user.firstname}
+            placeholder='Prénom'
+            onChangeText={(text) => this.setState(prevState => ({ user: { ...prevState.user, firstname: text } }))}/>
           <TextInput
               placeholder='Adresse'
               style={styles.input_st}
               onChangeText={(text) => this.setState({ adress: text })}/>
+          <Button title='Sauvegarder' onPress={() => this._updateUser()}/>
           <Button title='Se déconnecter' onPress={() => this._doDisconnect()}/>
         </View>
       </ScrollView>
@@ -67,20 +79,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center'
   },
-  title_text: {
-    fontWeight: 'bold',
-    fontSize: 15,
-    flex: 1,
-    flexWrap: 'wrap',
-    paddingRight: 5,
-    textAlign: 'left'
-  },
   input_st: {
-      marginBottom: 15,
-      borderWidth: 1,
-      borderColor: 'black',
+      borderBottomWidth: 1,
+      borderBottomColor: '#bdc3c7',
       width: 250,
       height: 50,
-      padding: 15
+      paddingTop: 20,
+      marginBottom: 35,
+      marginTop: 15,
   }
 });

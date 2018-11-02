@@ -23,8 +23,6 @@ export default class LoginScreen extends React.Component {
     }
 
     _doConnect() {
-      console.log('Mail', this.state.mail)
-      console.log('Pass', this.state.password)
       firebase.auth().signInWithEmailAndPassword(this.state.mail, this.state.password)
         .then(() => {
           this.props.navigation.navigate("AppNavigator")
@@ -67,11 +65,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   login_input: {
-      marginBottom: 15,
-      borderWidth: 1,
-      borderColor: 'black',
-      width: 250,
-      height: 50,
-      padding: 15
+    borderBottomWidth: 1,
+    borderBottomColor: '#bdc3c7',
+    width: 250,
+    height: 50,
+    paddingTop: 20,
+    marginBottom: 35,
+    marginTop: 15,
   },
 })

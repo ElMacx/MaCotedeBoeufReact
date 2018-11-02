@@ -14,13 +14,6 @@ import { connect } from 'react-redux'
 
 
 class OrderDetailScreen extends React.Component {
-  static navigationOptions =({navigation})=> ({
-      headerRight:(
-          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-      )
-  });
   constructor(props) {
     super(props)
   }

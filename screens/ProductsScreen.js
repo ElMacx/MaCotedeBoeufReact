@@ -7,6 +7,8 @@ import {
   Button,
   Alert,
   TouchableOpacity,
+  ScrollView,
+  RefreshControl,
 } from 'react-native';
 
 import ProductItem from '../components/ProductItem';
@@ -14,15 +16,11 @@ import { connect } from 'react-redux'
 
 
 class ProductsScreen extends React.Component {
-  static navigationOptions =({navigation})=> ({
-      headerRight:(
-          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-      )
-  });
   constructor(props) {
     super(props)
+    this.state = {
+      refreshing: false,
+    }
   }
 
   _getProductsFromAPI() {
@@ -46,13 +44,19 @@ class ProductsScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._getProductsFromAPI}
+          />
+        }>
         <FlatList
             data={this.props.productList}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => <ProductItem product={item} onPress={(product) => this.props.navigation.navigate("Product", { product: product, fromOrder: false }) }/>}
           />
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -60,7 +64,7 @@ class ProductsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ecf0f1',
   }
 });
 

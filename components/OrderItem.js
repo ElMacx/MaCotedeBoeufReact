@@ -16,10 +16,11 @@ class OrderItem extends React.Component {
         <View style={styles.content_container}>
           <View style={styles.text_container}>
             <Text style={styles.title_text}>Commande n°{index + 1}</Text>
-            <Text style={styles.price}>{stateTranscription[order.state].label}</Text>
+            <Text style={styles.state}>{stateTranscription[order.state].label}</Text>
           </View>
           <View style={styles.price_container}>
-            <Text>Prix total : {order.totalPrice}€</Text>
+            <Text style={styles.total_price_label}>Prix total</Text>
+            <Text style={styles.total_price}>{order.totalPrice}€</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -29,16 +30,17 @@ class OrderItem extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    height: 50,
+    height: 60,
     flexDirection: 'row',
+    marginTop: 15,
     marginLeft: 15,
-    marginRight: 15
-  },
-  image: {
-    width: 35,
-    height: 35,
-    margin: 5,
-    backgroundColor: 'gray',
+    marginRight: 15,
+    backgroundColor: '#e74c3c',
+    borderRadius: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   content_container: {
     flex: 1,
@@ -51,19 +53,31 @@ const styles = StyleSheet.create({
   },
   price_container: {
     flex: 3,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 5
   },
   title_text: {
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 17,
     flex: 1,
     flexWrap: 'wrap',
-    paddingRight: 5
+    color: '#FFFFFF',
+    marginLeft: 10,
+    marginTop: 5
   },
-  price: {
+  state: {
     fontStyle: 'italic',
-    color: '#666666'
+    color: '#FFFFFF',
+    marginLeft: 10,
+    marginBottom: 5
   },
+  total_price: {
+    color: '#FFFFFF'
+  },
+  total_price_label: {
+    color: '#FFFFFF'
+  }
 })
 
 export default OrderItem

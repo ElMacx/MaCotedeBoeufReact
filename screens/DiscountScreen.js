@@ -1,20 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, FlatList } from 'react-native';
+import { ScrollView, RefreshControl, View, StyleSheet, TouchableOpacity, Text, FlatList } from 'react-native';
 import DiscountItem from '../components/DiscountItem'
 
 export default class DiscountScreen extends React.Component {
-  static navigationOptions =({navigation})=> ({
-      headerRight:(
-          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-      )
-  });
 
   constructor(props) {
-    super(props),
+    super(props)
     this.state = {
-      discountList: []
+      discountList: [],
+      refreshing: false,
     }
   }
 
@@ -30,6 +24,8 @@ export default class DiscountScreen extends React.Component {
     .then((responseJson) => {
       this.setState({ discountList: responseJson })
     })
+    .catch(e => {
+    })
   }
 
   componentDidMount() {
@@ -38,13 +34,19 @@ export default class DiscountScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._getDiscountFromAPI}
+          />
+        }>
         <FlatList
             data={this.state.discountList}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => <DiscountItem discount={item}/>}
           />
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -52,7 +54,6 @@ export default class DiscountScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   },
 });

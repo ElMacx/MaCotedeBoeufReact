@@ -1,23 +1,17 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
+import { ScrollView, RefreshControl, View, TouchableOpacity, Text, FlatList, StyleSheet } from 'react-native';
 import OrderItem from '../components/OrderItem';
 import * as firebase from 'firebase';
 import { connect } from 'react-redux'
 
 
 class OrdersScreen extends React.Component {
-  static navigationOptions =({navigation})=> ({
-      headerRight:(
-          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-      )
-  });
   constructor(props) {
     super(props)
     this.state = {
       mixedOrders: [],
-      stickyHeaderIndices: []
+      stickyHeaderIndices: [],
+      refreshing: false,
     }
   }
 
@@ -29,7 +23,7 @@ class OrdersScreen extends React.Component {
         total += product.price * elem.quantity
       }
     })
-    return total
+    return total.toFixed(2)
   }
 
   _adaptObjectForList(obj) {
@@ -81,7 +75,7 @@ class OrdersScreen extends React.Component {
     if (item.header) {
       return (
         <View style={styles.header_container}>
-          <Text>{ item.label }</Text>
+          <Text style={styles.header_text}>{ item.label }</Text>
         </View>
       );
     } else if (!item.header) {
@@ -92,22 +86,24 @@ class OrdersScreen extends React.Component {
   };
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this._getOrdersFromAPI(user.uid)
-      }
-    });
+    this._getOrdersFromAPI(firebase.auth().currentUser.uid)
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={() => this._getOrdersFromAPI(firebase.auth().currentUser.uid)}
+          />
+        }>
         <FlatList data={this.state.mixedOrders}
                   keyExtractor={(item) => item.id}
                   renderItem={this._renderItem}
                   stickyHeaderIndices={this.state.stickyHeaderIndices}
         />
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -119,12 +115,23 @@ const styles = StyleSheet.create({
   },
   header_container: {
     flex: 1,
-    backgroundColor: '#fff000',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 10,
-    marginLeft: 10,
+    marginRight: 15,
+    marginLeft: 15,
+    marginTop: 20,
     height: 40,
+    backgroundColor: '#e74c3c',
+    borderRadius: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+  },
+  header_text: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: 'bold'
   }
 });
 
