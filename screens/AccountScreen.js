@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, View, TouchableOpacity, Button, Alert } from 'react-native';
 import * as firebase from 'firebase';
 
 export default class AccountScreen extends React.Component {
@@ -8,7 +8,6 @@ export default class AccountScreen extends React.Component {
     super(props)
     this.state = {
       user: {},
-      adress: ''
     }
   }
 
@@ -57,9 +56,11 @@ export default class AccountScreen extends React.Component {
             placeholder='Prénom'
             onChangeText={(text) => this.setState(prevState => ({ user: { ...prevState.user, firstname: text } }))}/>
           <TextInput
-              placeholder='Adresse'
+              placeholder='Téléphone'
               style={styles.input_st}
-              onChangeText={(text) => this.setState({ adress: text })}/>
+              value={this.state.user.phone}
+              keyboardType='phone-pad'
+              onChangeText={(text) => this.setState({ user: { ...prevState.user, phone: text } })}/>
           <Button title='Sauvegarder' onPress={() => this._updateUser()}/>
           <Button title='Se déconnecter' onPress={() => this._doDisconnect()}/>
         </View>

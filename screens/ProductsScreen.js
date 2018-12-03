@@ -36,6 +36,7 @@ class ProductsScreen extends React.Component {
       const action = { type: "SET_PRODUCT_LIST", value: responseJson }
       this.props.dispatch(action)
     })
+    .catch(() => {})
   }
 
   componentDidMount() {
@@ -64,7 +65,8 @@ class ProductsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#2c3e50',
+    marginBottom: 5,
   }
 });
 

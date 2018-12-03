@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, TextInput, StyleSheet, Alert } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, Alert, ScrollView } from 'react-native';
 import * as firebase from 'firebase';
 
 export default class SignUpScreen extends React.Component {
@@ -65,6 +65,7 @@ export default class SignUpScreen extends React.Component {
 
   render() {
       return (
+        <ScrollView style={styles.scroll_container} contentContainerStyle={{flexGrow: 1}}>
           <View style={styles.container}>
             <TextInput
                 placeholder='Prénom'
@@ -96,6 +97,7 @@ export default class SignUpScreen extends React.Component {
                 onChangeText={(text) => this.setState({ confirm_password: text })}/>
             <Button title="S'inscrire" onPress={() => this._doSignUp()}/>
           </View>
+        </ScrollView>
       );
   }
 }
@@ -106,12 +108,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  scroll_container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    flexDirection: 'column',
+  },
   input: {
-      marginBottom: 15,
-      borderWidth: 1,
-      borderColor: 'black',
-      width: 250,
-      height: 50,
-      padding: 15
+    borderBottomWidth: 1,
+    borderBottomColor: '#bdc3c7',
+    width: 250,
+    height: 50,
+    paddingTop: 20,
+    marginBottom: 20,
+    marginTop: 10,
   },
 })

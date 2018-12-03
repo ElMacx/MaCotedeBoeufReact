@@ -19,10 +19,14 @@ const ProductStack = createStackNavigator({
       return {
         title: 'Produits',
         headerRight: (
-            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+            <TouchableOpacity style={{ marginRight: 15, color: '#ffffff' }} onPress={() => navigation.navigate('Cart')}>
               <Icon type='ionicon' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+          color: '#ffffff',
+        },
       }
     }
   },

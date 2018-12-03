@@ -3,6 +3,7 @@ import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import AppNavigator from './AppNavigator';
+import LoadingScreen from '../screens/LoadingScreen';
 
 const LoginStackNavigator = createStackNavigator({
   Login: {
@@ -22,8 +23,9 @@ const LoginStackNavigator = createStackNavigator({
 const LoginSwitchNavigator = createSwitchNavigator({
     LoginStackNavigator,
     AppNavigator,
+    LoadingScreen,
   }, {
-    initialRouteName: 'LoginStackNavigator'
+    initialRouteName: 'LoadingScreen'
 })
 
 export default LoginSwitchNavigator
