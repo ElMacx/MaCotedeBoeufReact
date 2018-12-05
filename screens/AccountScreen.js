@@ -49,17 +49,20 @@ export default class AccountScreen extends React.Component {
             style={styles.input_st}
             value={this.state.user.lastname}
             placeholder='Nom de famille'
+            placeholderTextColor='#ffffff'
             onChangeText={(text) => this.setState(prevState => ({ user: { ...prevState.user, lastname: text } }))}/>
           <TextInput
             style={styles.input_st}
             value={this.state.user.firstname}
             placeholder='Prénom'
+            placeholderTextColor='#ffffff'
             onChangeText={(text) => this.setState(prevState => ({ user: { ...prevState.user, firstname: text } }))}/>
           <TextInput
               placeholder='Téléphone'
               style={styles.input_st}
               value={this.state.user.phone}
               keyboardType='phone-pad'
+              placeholderTextColor='#ffffff'
               onChangeText={(text) => this.setState({ user: { ...prevState.user, phone: text } })}/>
           <Button title='Sauvegarder' onPress={() => this._updateUser()}/>
           <Button title='Se déconnecter' onPress={() => this._doDisconnect()}/>
@@ -73,20 +76,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff'
+    backgroundColor: '#2c3e50'
   },
   inputsContainer: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center'
   },
   input_st: {
       borderBottomWidth: 1,
-      borderBottomColor: '#bdc3c7',
+      borderBottomColor: '#ffffff',
       width: 250,
       height: 50,
       paddingTop: 20,
       marginBottom: 35,
       marginTop: 15,
+      color: '#ffffff'
   }
 });

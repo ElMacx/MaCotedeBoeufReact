@@ -19,14 +19,14 @@ const ProductStack = createStackNavigator({
       return {
         title: 'Produits',
         headerRight: (
-            <TouchableOpacity style={{ marginRight: 15, color: '#ffffff' }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+            <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
         ),
         headerStyle: {
           backgroundColor: '#2c3e50',
-          color: '#ffffff',
         },
+        headerTintColor: '#ffffff'
       }
     }
   },
@@ -36,9 +36,12 @@ const ProductStack = createStackNavigator({
       return {
         headerRight: (
             <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+        },
       }
     }
   },
@@ -72,9 +75,13 @@ const DiscountStack = createStackNavigator({
         title: 'Les promotions',
         headerRight: (
             <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+        },
+        headerTintColor: '#ffffff'
       }
     }
   },
@@ -104,9 +111,13 @@ const OrdersStack = createStackNavigator({
         title: 'Mes commandes',
         headerRight: (
             <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+        },
+        headerTintColor: '#ffffff'
       }
     }
   },
@@ -123,9 +134,13 @@ const OrdersStack = createStackNavigator({
         title: 'Mon détail de commande',
         headerRight: (
             <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+        },
+        headerTintColor: '#ffffff'
       }
     }
   },
@@ -136,9 +151,12 @@ const OrdersStack = createStackNavigator({
         title: 'Les promotions',
         headerRight: (
             <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+        },
       }
     }
   },
@@ -162,9 +180,13 @@ const AccountStack = createStackNavigator({
         title: 'Votre compte',
         headerRight: (
             <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate('Cart')}>
-              <Icon type='ionicon' name='ios-cart'/>
+              <Icon type='ionicon' color='#ffffff' name='ios-cart'/>
             </TouchableOpacity>
-        )
+        ),
+        headerStyle: {
+          backgroundColor: '#2c3e50',
+        },
+        headerTintColor: '#ffffff'
       }
     }
   },

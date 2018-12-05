@@ -111,23 +111,19 @@ class OrdersScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2c3e50',
   },
   header_container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 15,
-    marginLeft: 15,
-    marginTop: 20,
-    marginBottom: 15,
-    height: 40,
-    backgroundColor: '#e74c3c',
-    borderRadius: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    paddingBottom: 15,
+    paddingTop: 15,
+    height: 50,
+    borderBottomWidth: .5,
+    borderBottomColor: '#ffffff',
+    borderTopWidth: .5,
+    borderTopColor: '#ffffff'
   },
   header_text: {
     color: '#FFFFFF',

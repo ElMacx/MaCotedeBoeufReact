@@ -30,16 +30,9 @@ const styles = StyleSheet.create({
   main_container: {
     height: 55,
     flexDirection: 'row',
-    marginTop: 15,
-    marginLeft: 15,
-    marginRight: 15,
     marginBottom: 5,
-    backgroundColor: '#e74c3c',
-    borderRadius: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    borderBottomWidth: .2,
+    borderBottomColor: '#ffffff',
   },
   content_container: {
     flex: 1,

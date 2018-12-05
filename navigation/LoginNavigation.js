@@ -15,7 +15,11 @@ const LoginStackNavigator = createStackNavigator({
   SignUp: {
     screen: SignUpScreen,
     navigationOptions: {
-      title: 'Inscription'
+      title: 'Inscription',
+      headerStyle: {
+        backgroundColor: '#2c3e50',
+      },
+      headerTintColor: '#ffffff'
     }
   }
 })

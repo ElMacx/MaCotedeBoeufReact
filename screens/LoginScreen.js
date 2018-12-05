@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, Button, TextInput, StyleSheet, Alert, ScrollView, Image } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, Alert, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
 import * as firebase from 'firebase';
 import firebaseConfig from '../helper/firebaseConfig'
+import CustomTextInput from '../components/CustomTextInput';
 
 export default class LoginScreen extends React.Component {
 
@@ -31,25 +32,34 @@ export default class LoginScreen extends React.Component {
       this.props.navigation.navigate('SignUp')
     }
 
+    _changeInput(value, target) {
+      this.setState({ target: value })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1}}>
-              <View style={styles.input_container}>
-                <Image
-                  style={{width: 50, height: 50}}
-                  source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
-                />
-                <TextInput
-                  style={styles.login_input}
-                  placeholder='Email' onChangeText={(text) => this.setState({ mail: text })}/>
-                <TextInput
-                  style={styles.login_input}
-                  secureTextEntry={true}
-                  placeholder='Mot de passe'
-                  onChangeText={(pass) => this.setState({ password: pass })}/>
-                <Button title="Se connecter" onPress={() => this._doConnect()}/>
-                <Button title="S'inscrire" onPress={() => this._goToSignUp()}/>
-              </View>
+              <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+                <View style={styles.input_container}>
+                  <Image
+                    style={{width: 150, height: 150}}
+                    source={require('../assets/images/CDB.png')}
+                  />
+                  <TextInput
+                    style={styles.login_input}
+                    placeholder='Email'
+                    placeholderTextColor='#ffffff'
+                    onChangeText={(text) => this.setState({ mail: text })}/>
+                  <TextInput
+                    style={styles.login_input}
+                    secureTextEntry={true}
+                    placeholderTextColor='#ffffff'
+                    placeholder='Mot de passe'
+                    onChangeText={(pass) => this.setState({ password: pass })}/>
+                  <Button title="Se connecter" onPress={() => this._doConnect()}/>
+                  <Button title="S'inscrire" onPress={() => this._goToSignUp()}/>
+                </View>
+              </KeyboardAvoidingView>
             </ScrollView>
         );
     }

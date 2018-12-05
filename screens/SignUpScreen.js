@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, TextInput, StyleSheet, Alert, ScrollView } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, Alert, ScrollView, KeyboardAvoidingView } from 'react-native';
 import * as firebase from 'firebase';
 
 export default class SignUpScreen extends React.Component {
@@ -66,37 +66,45 @@ export default class SignUpScreen extends React.Component {
   render() {
       return (
         <ScrollView style={styles.scroll_container} contentContainerStyle={{flexGrow: 1}}>
-          <View style={styles.container}>
-            <TextInput
-                placeholder='Prénom'
-                style={styles.input}
-                onChangeText={(text) => this.setState({ first_name: text })}/>
-            <TextInput
-                placeholder='Nom'
-                style={styles.input}
-                onChangeText={(text) => this.setState({ last_name: text })}/>
-            <TextInput
-                placeholder='Mail'
-                keyboardType='email-address'
-                style={styles.input}
-                onChangeText={(text) => this.setState({ mail: text })}/>
-            <TextInput
-                placeholder='Téléphone'
-                style={styles.input}
-                keyboardType='phone-pad'
-                onChangeText={(text) => this.setState({ phone_number: text })}/>
-            <TextInput
-                placeholder='Mot de passe'
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={(text) => this.setState({ password: text })}/>
-            <TextInput
-                placeholder='Confirmer le mot de passe'
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={(text) => this.setState({ confirm_password: text })}/>
-            <Button title="S'inscrire" onPress={() => this._doSignUp()}/>
-          </View>
+          <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+            <View style={styles.container}>
+              <TextInput
+                  placeholder='Prénom'
+                  style={styles.input}
+                  placeholderTextColor='#ffffff'
+                  onChangeText={(text) => this.setState({ first_name: text })}/>
+              <TextInput
+                  placeholder='Nom'
+                  style={styles.input}
+                  placeholderTextColor='#ffffff'
+                  onChangeText={(text) => this.setState({ last_name: text })}/>
+              <TextInput
+                  placeholder='Mail'
+                  keyboardType='email-address'
+                  placeholderTextColor='#ffffff'
+                  style={styles.input}
+                  onChangeText={(text) => this.setState({ mail: text })}/>
+              <TextInput
+                  placeholder='Téléphone'
+                  style={styles.input}
+                  keyboardType='phone-pad'
+                  placeholderTextColor='#ffffff'
+                  onChangeText={(text) => this.setState({ phone_number: text })}/>
+              <TextInput
+                  placeholder='Mot de passe'
+                  style={styles.input}
+                  secureTextEntry={true}
+                  placeholderTextColor='#ffffff'
+                  onChangeText={(text) => this.setState({ password: text })}/>
+              <TextInput
+                  placeholder='Confirmer le mot de passe'
+                  style={styles.input}
+                  secureTextEntry={true}
+                  placeholderTextColor='#ffffff'
+                  onChangeText={(text) => this.setState({ confirm_password: text })}/>
+              <Button title="S'inscrire" onPress={() => this._doSignUp()}/>
+            </View>
+          </KeyboardAvoidingView>
         </ScrollView>
       );
   }
@@ -106,11 +114,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#2c3e50'
   },
   scroll_container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2c3e50',
     flexDirection: 'column',
   },
   input: {
@@ -121,5 +129,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     marginBottom: 20,
     marginTop: 10,
+    color: '#ffffff'
   },
 })

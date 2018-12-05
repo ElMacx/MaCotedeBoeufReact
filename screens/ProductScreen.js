@@ -43,7 +43,7 @@ class ProductScreen extends React.Component {
       return (
         <View style={styles.button_container}>
           <View style={styles.quantity_container}>
-            <Text>Quantité (nb personnes)</Text>
+            <Text style={{ color: '#ffffff'}}>Quantité (nb personnes)</Text>
             <SelectInput options={this._buildSelectInputOptions()}
                          value={this.state.quantity}
                          onSubmitEditing={(item) => this.setState({ quantity: item })}
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: '#2c3e50'
   },
   input: {
       marginBottom: 15,
@@ -116,16 +117,19 @@ const styles = StyleSheet.create({
   product_title: {
     fontWeight: 'bold',
     fontSize: 24,
+    color: '#ffffff'
   },
   product_description: {
     marginTop: 15,
     marginRight: 15,
     marginLeft: 15,
-    textAlign: 'justify'
+    textAlign: 'justify',
+    color: '#ffffff'
   },
   product_price: {
     marginTop: 15,
     fontStyle: 'italic',
+    color: '#ffffff'
   },
   quantity_container: {
     flexDirection: 'column',
